@@ -1,0 +1,19 @@
+{
+  "name": "health-dashboard",
+  "homepage": "https://github.com/manticarodrigo/health-dashboard",
+  "authors": [
+    "manticarodrigo"
+  ],
+  "description": "A dashboard for health data visualization.",
+  "main": "public/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build"
+  ],
+  "private": true
+}
