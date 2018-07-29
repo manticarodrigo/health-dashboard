@@ -64,7 +64,7 @@ const sidebarStyle = theme => ({
     ...defaultFont,
     padding: "10px 0",
     display: "block",
-    fontSize: "16px",
+    fontSize: "18px",
     textAlign: "left",
     fontWeight: "500",
     lineHeight: "30px",
