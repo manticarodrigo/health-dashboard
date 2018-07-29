@@ -17,9 +17,9 @@ function groupmonth(array) {
   const bymonth = {};
   for (var i in array) {
     const value = array[i];
-    let d = new Date(value.time * 1000);
-    // d = (d.getFullYear() - 1970) * 12 + d.getMonth();
-    let month = d.getMonth() + 1;
+    let d = new Date(Number(value.time));
+    console.log(d); // * 12 + d.getMonth();
+    let month = monthNames[d.getMonth()];
     // initialize if empty
     bymonth[month] = bymonth[month] || 0;
     // update object
