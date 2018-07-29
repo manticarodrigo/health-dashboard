@@ -70,6 +70,14 @@ class Dashboard extends React.Component {
     this.setState({ value: index });
   };
 
+  getAvg(arr) {
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++) {
+      sum += parseInt(arr[i], 10);
+    }
+    return sum / arr.length;
+  }
+
   render() {
     const { classes } = this.props;
     const { stressData, moodData, ruminationData, sleepData } = this.state;
@@ -83,7 +91,9 @@ class Dashboard extends React.Component {
                   <Icon>warning</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Future Stress</p>
-                <h3 className={classes.cardTitle}>3/5</h3>
+                <h3 className={classes.cardTitle}>
+                  {this.getAvg(stressData.series)}/5
+                </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -104,12 +114,14 @@ class Dashboard extends React.Component {
                   <Icon>insert_emoticon</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Mood</p>
-                <h3 className={classes.cardTitle}>2/5</h3>
+                <h3 className={classes.cardTitle}>
+                  {this.getAvg(moodData.series)}/5
+                </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
                   <DateRange />
-                  Last 7 Days
+                  Last 5 Months
                 </div>
               </CardFooter>
             </Card>
@@ -121,12 +133,14 @@ class Dashboard extends React.Component {
                   <Icon>av_timer</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Rumination</p>
-                <h3 className={classes.cardTitle}>4/5</h3>
+                <h3 className={classes.cardTitle}>
+                  {this.getAvg(ruminationData.series)}/5
+                </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <LocalOffer />
-                  Last 7 Days
+                  <DateRange />
+                  Last 5 Months
                 </div>
               </CardFooter>
             </Card>
@@ -138,12 +152,14 @@ class Dashboard extends React.Component {
                   <Accessibility />
                 </CardIcon>
                 <p className={classes.cardCategory}>Sleep</p>
-                <h3 className={classes.cardTitle}>5/5</h3>
+                <h3 className={classes.cardTitle}>
+                  {this.getAvg(sleepData.series)}/5
+                </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Update />
-                  Last 7 Days
+                  <DateRange />
+                  Last 5 Months
                 </div>
               </CardFooter>
             </Card>
