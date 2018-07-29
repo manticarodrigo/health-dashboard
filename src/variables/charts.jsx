@@ -16,16 +16,12 @@ var delays2 = 80,
 // #############################
 
 const futureStressChart = {
-  data: {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
-    series: [[12, 17, 7, 17, 23, 18, 38]]
-  },
   options: {
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 0
     }),
     low: 0,
-    high: 50, // we recommend you to set the high sa the biggest value + something for a better look
+    high: 6, // we recommend you to set the high sa the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,

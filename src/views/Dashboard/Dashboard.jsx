@@ -6,7 +6,6 @@ import ChartistGraph from "react-chartist";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
 import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
 import LocalOffer from "@material-ui/icons/LocalOffer";
@@ -31,12 +30,48 @@ import {
   sleepChart
 } from "variables/charts";
 
+import {
+  getFutureStressData,
+  getMoodData,
+  getRuminationData,
+  getSleepData
+} from "../../services/data";
+
 import dashboardStyle from "assets/jss/modules/views/dashboardStyle.jsx";
 
 class Dashboard extends React.Component {
-  state = {
-    value: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+      stressData: { labels: [], series: [] },
+      moodData: { labels: [], series: [] },
+      ruminationData: { labels: [], series: [] },
+      sleepData: { labels: [], series: [] }
+    };
+
+    getFutureStressData()
+      .then(data => {
+        console.log(data);
+        this.setState({ stressData: data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    // getMoodData().then(data => {
+    //   this.setState({ moodData: data });
+    // });
+
+    // getRuminationData().then(data => {
+    //   this.setState({ ruminationData: data });
+    // });
+
+    // getSleepData().then(data => {
+    //   this.setState({ sleepData: data });
+    // });
+  }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -44,8 +79,10 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
   render() {
     const { classes } = this.props;
+    const { stressData, moodData, ruminationData, sleepData } = this.state;
     return (
       <div>
         <GridContainer>
@@ -128,7 +165,7 @@ class Dashboard extends React.Component {
               <CardHeader color="warning">
                 <ChartistGraph
                   className="ct-chart"
-                  data={futureStressChart.data}
+                  data={stressData}
                   type="Line"
                   options={futureStressChart.options}
                   listener={futureStressChart.animation}
@@ -155,7 +192,7 @@ class Dashboard extends React.Component {
               <CardHeader color="success">
                 <ChartistGraph
                   className="ct-chart"
-                  data={moodChart.data}
+                  data={moodData}
                   type="Bar"
                   options={moodChart.options}
                   responsiveOptions={moodChart.responsiveOptions}
@@ -178,7 +215,7 @@ class Dashboard extends React.Component {
               <CardHeader color="danger">
                 <ChartistGraph
                   className="ct-chart"
-                  data={ruminationChart.data}
+                  data={ruminationData}
                   type="Line"
                   options={ruminationChart.options}
                   listener={ruminationChart.animation}
@@ -200,7 +237,7 @@ class Dashboard extends React.Component {
               <CardHeader color="info">
                 <ChartistGraph
                   className="ct-chart"
-                  data={sleepChart.data}
+                  data={sleepData}
                   type="Line"
                   options={sleepChart.options}
                   listener={sleepChart.animation}

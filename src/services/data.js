@@ -1,5 +1,3 @@
-const csv = require("csvtojson");
-
 const monthNames = [
   "Jan",
   "Feb",
@@ -19,9 +17,9 @@ function groupmonth(array) {
   const bymonth = {};
   for (var i in array) {
     const value = array[i];
-    let d = new Date(value["time"] * 1000);
+    let d = new Date(value.time * 1000);
     // d = (d.getFullYear() - 1970) * 12 + d.getMonth();
-    let month = monthNames[d.getMonth()];
+    let month = d.getMonth() + 1;
     // initialize if empty
     bymonth[month] = bymonth[month] || 0;
     // update object
@@ -29,53 +27,41 @@ function groupmonth(array) {
     bymonth[month] = bymonth[month] !== 0 ? sum / 2 : Number(value.value);
   }
   var labels = [];
-  var series = [];
+  var values = [];
   for (var key in bymonth) {
     if (bymonth.hasOwnProperty(key)) {
       labels.push(key);
-      series.push(bymonth[key]);
+      values.push(bymonth[key]); // Math.round(bymonth[key])
     }
   }
+  const series = [values];
   return { labels, series };
 }
 
-export function getData(headers, filePath) {
+export function getFutureStressData() {
+  const json = require("../data/future_stress.json");
   return new Promise((resolve, reject) => {
-    csv({
-      noheader: false,
-      headers: headers
-    })
-      .fromFile(filePath)
-      .then(data => {
-        resolve(groupmonth(data));
-      })
-      .catch(err => {
-        reject(err);
-      });
+    resolve(groupmonth(json));
   });
 }
 
-export function getFutureStressData() {
-  const headers = ["time", "value"];
-  const filePath = "../../data/future_stress.csv";
-
-  return getData(headers, filePath);
-}
-
 export function getMoodData() {
-  const headers = ["time", "value"];
-  const filePath = "../../data/mood.csv";
-  return getData(headers, filePath);
+  const json = require("../data/mood.json");
+  return new Promise((resolve, reject) => {
+    resolve(groupmonth(json));
+  });
 }
 
 export function getRuminationData() {
-  const headers = ["time", "value"];
-  const filePath = "../../data/rumination.csv";
-  return getData(headers, filePath);
+  const json = require("../data/rumination.json");
+  return new Promise((resolve, reject) => {
+    resolve(groupmonth(json));
+  });
 }
 
 export function getSleepData() {
-  const headers = ["time", "value"];
-  const filePath = "../../data/sleep.csv";
-  return getData(headers, filePath);
+  const json = require("../data/sleep.json");
+  return new Promise((resolve, reject) => {
+    resolve(groupmonth(json));
+  });
 }
