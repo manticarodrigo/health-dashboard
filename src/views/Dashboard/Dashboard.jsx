@@ -8,8 +8,6 @@ import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Accessibility from "@material-ui/icons/Accessibility";
@@ -70,12 +68,26 @@ class Dashboard extends React.Component {
     this.setState({ value: index });
   };
 
-  getAvg(arr) {
-    var sum = 0;
-    for (var i = 0; i < arr.length; i++) {
-      sum += parseInt(arr[i], 10);
+  getAvg(series) {
+    if (series[0]) {
+      const arr = series[0];
+      var sum = 0;
+      for (var i = 0; i < arr.length; i++) {
+        sum += parseInt(arr[i], 10);
+      }
+      return sum / arr.length;
     }
-    return sum / arr.length;
+  }
+
+  getDiff(series) {
+    if (series[0]) {
+      const arr = series[0];
+      const first = arr[0];
+      const last = arr[arr.length - 1];
+      const diff = ((last - first) / first) * 100;
+      return diff.toFixed(2);
+    }
+    return "N/A";
   }
 
   render() {
@@ -181,9 +193,10 @@ class Dashboard extends React.Component {
                 <h4 className={classes.cardTitle}>Future Stress</h4>
                 <p className={classes.cardCategory}>
                   <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                    <ArrowUpward className={classes.upArrowCardCategory} />
+                    {this.getDiff(stressData.series)}%
                   </span>{" "}
-                  increase in a week.
+                  increase in 5 months.
                 </p>
               </CardBody>
               <CardFooter chart>
@@ -206,7 +219,13 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <h4 className={classes.cardTitle}>Mood</h4>
-                <p className={classes.cardCategory}>Last 7 Days</p>
+                <p className={classes.cardCategory}>
+                  <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} />
+                    {this.getDiff(moodData.series)}%
+                  </span>{" "}
+                  increase in 5 months.
+                </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
@@ -228,7 +247,13 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <h4 className={classes.cardTitle}>Rumination</h4>
-                <p className={classes.cardCategory}>Last 7 Days</p>
+                <p className={classes.cardCategory}>
+                  <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} />
+                    {this.getDiff(moodData.series)}%
+                  </span>{" "}
+                  increase in 5 months.
+                </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
@@ -252,9 +277,10 @@ class Dashboard extends React.Component {
                 <h4 className={classes.cardTitle}>Sleep</h4>
                 <p className={classes.cardCategory}>
                   <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                    <ArrowUpward className={classes.upArrowCardCategory} />
+                    {this.getDiff(sleepData.series)}%
                   </span>{" "}
-                  increase in 7 days.
+                  increase in 5 months.
                 </p>
               </CardBody>
               <CardFooter chart>
