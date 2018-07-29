@@ -71,7 +71,7 @@ const sidebarStyle = theme => ({
     textDecoration: "none",
     backgroundColor: "transparent",
     "&,&:hover": {
-      color: "#333"
+      color: "#3C4858"
     }
   },
   logoImage: {
@@ -153,6 +153,7 @@ const sidebarStyle = theme => ({
     margin: "0",
     lineHeight: "30px",
     fontSize: "14px",
+    fontWeight: "800",
     color: "#FFFFFF"
   },
   whiteFont: {

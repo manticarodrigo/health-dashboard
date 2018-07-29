@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+                  <Icon>warning</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Future Stress</p>
                 <h3 className={classes.cardTitle}>3/5</h3>
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
-                  <Store />
+                  <Icon>insert_emoticon</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Mood</p>
                 <h3 className={classes.cardTitle}>2/5</h3>
@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
-                  <Icon>info_outline</Icon>
+                  <Icon>av_timer</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Rumination</p>
                 <h3 className={classes.cardTitle}>4/5</h3>
@@ -123,7 +123,7 @@ class Dashboard extends React.Component {
           </GridItem>
         </GridContainer>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={3}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="warning">
                 <ChartistGraph
@@ -150,7 +150,7 @@ class Dashboard extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="success">
                 <ChartistGraph
@@ -173,7 +173,7 @@ class Dashboard extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="danger">
                 <ChartistGraph
@@ -195,7 +195,7 @@ class Dashboard extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={3}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="info">
                 <ChartistGraph

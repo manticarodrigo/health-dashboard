@@ -91,9 +91,7 @@ const Sidebar = ({ ...props }) => {
           }}
         >
           {brand}
-          <div className={classes.sidebarWrapper}>
-            {links}
-          </div>
+          <div className={classes.sidebarWrapper}>{links}</div>
         </Drawer>
       </Hidden>
       <Hidden smDown implementation="css">
