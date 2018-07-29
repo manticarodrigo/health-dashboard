@@ -18,7 +18,6 @@ function groupmonth(array) {
   for (var i in array) {
     const value = array[i];
     let d = new Date(Number(value.time));
-    console.log(d); // * 12 + d.getMonth();
     let month = monthNames[d.getMonth()];
     // initialize if empty
     bymonth[month] = bymonth[month] || 0;
@@ -31,7 +30,7 @@ function groupmonth(array) {
   for (var key in bymonth) {
     if (bymonth.hasOwnProperty(key)) {
       labels.push(key);
-      values.push(bymonth[key]); // Math.round(bymonth[key])
+      values.push(bymonth[key]);
     }
   }
   const series = [values];

@@ -23,12 +23,7 @@ import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import {
-  futureStressChart,
-  moodChart,
-  ruminationChart,
-  sleepChart
-} from "variables/charts";
+import { lineChart } from "variables/charts";
 
 import {
   getFutureStressData,
@@ -50,26 +45,21 @@ class Dashboard extends React.Component {
       sleepData: { labels: [], series: [] }
     };
 
-    getFutureStressData()
-      .then(data => {
-        console.log(data);
-        this.setState({ stressData: data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    getFutureStressData().then(data => {
+      this.setState({ stressData: data });
+    });
 
-    // getMoodData().then(data => {
-    //   this.setState({ moodData: data });
-    // });
+    getMoodData().then(data => {
+      this.setState({ moodData: data });
+    });
 
-    // getRuminationData().then(data => {
-    //   this.setState({ ruminationData: data });
-    // });
+    getRuminationData().then(data => {
+      this.setState({ ruminationData: data });
+    });
 
-    // getSleepData().then(data => {
-    //   this.setState({ sleepData: data });
-    // });
+    getSleepData().then(data => {
+      this.setState({ sleepData: data });
+    });
   }
 
   handleChange = (event, value) => {
@@ -167,8 +157,8 @@ class Dashboard extends React.Component {
                   className="ct-chart"
                   data={stressData}
                   type="Line"
-                  options={futureStressChart.options}
-                  listener={futureStressChart.animation}
+                  options={lineChart.options}
+                  listener={lineChart.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -193,10 +183,9 @@ class Dashboard extends React.Component {
                 <ChartistGraph
                   className="ct-chart"
                   data={moodData}
-                  type="Bar"
-                  options={moodChart.options}
-                  responsiveOptions={moodChart.responsiveOptions}
-                  listener={moodChart.animation}
+                  type="Line"
+                  options={lineChart.options}
+                  listener={lineChart.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -217,8 +206,8 @@ class Dashboard extends React.Component {
                   className="ct-chart"
                   data={ruminationData}
                   type="Line"
-                  options={ruminationChart.options}
-                  listener={ruminationChart.animation}
+                  options={lineChart.options}
+                  listener={lineChart.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -239,8 +228,8 @@ class Dashboard extends React.Component {
                   className="ct-chart"
                   data={sleepData}
                   type="Line"
-                  options={sleepChart.options}
-                  listener={sleepChart.animation}
+                  options={lineChart.options}
+                  listener={lineChart.animation}
                 />
               </CardHeader>
               <CardBody>
